@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Ping\NotificationHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeerToday.Core.Contracts\BeerToday.Core.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
+

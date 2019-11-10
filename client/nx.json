@@ -1,0 +1,24 @@
+{
+  "npmScope": "beer-today",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "client-web-e2e": {
+      "tags": []
+    },
+    "client-web": {
+      "tags": []
+    },
+    "client-mobile-e2e": {
+      "tags": []
+    },
+    "client-mobile": {
+      "tags": []
+    }
+  }
+}

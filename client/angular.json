@@ -1,0 +1,272 @@
+{
+  "version": 1,
+  "projects": {
+    "client-web": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/client-web",
+      "sourceRoot": "apps/client-web/src",
+      "prefix": "beer-today",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/client-web",
+            "index": "apps/client-web/src/index.html",
+            "main": "apps/client-web/src/main.ts",
+            "polyfills": "apps/client-web/src/polyfills.ts",
+            "tsConfig": "apps/client-web/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/client-web/src/favicon.ico",
+              "apps/client-web/src/assets"
+            ],
+            "styles": ["apps/client-web/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client-web/src/environments/environment.ts",
+                  "with": "apps/client-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "client-web:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "client-web:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client-web:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/client-web/tsconfig.app.json",
+              "apps/client-web/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/client-web/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/client-web/src/test.ts",
+            "tsConfig": "apps/client-web/tsconfig.spec.json",
+            "karmaConfig": "apps/client-web/karma.conf.js",
+            "polyfills": "apps/client-web/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "client-web-e2e": {
+      "root": "apps/client-web-e2e",
+      "sourceRoot": "apps/client-web-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-web-e2e/cypress.json",
+            "tsConfig": "apps/client-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/client-web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/client-web-e2e/**"]
+          }
+        }
+      }
+    },
+    "client-mobile": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/client-mobile",
+      "sourceRoot": "apps/client-mobile/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/client-mobile",
+            "index": "apps/client-mobile/src/index.html",
+            "main": "apps/client-mobile/src/main.ts",
+            "polyfills": "apps/client-mobile/src/polyfills.ts",
+            "tsConfig": "apps/client-mobile/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/client-mobile/src/favicon.ico",
+              "apps/client-mobile/src/assets"
+            ],
+            "styles": ["apps/client-mobile/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client-mobile/src/environments/environment.ts",
+                  "with": "apps/client-mobile/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "client-mobile:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "client-mobile:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "client-mobile:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/client-mobile/tsconfig.app.json",
+              "apps/client-mobile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/client-mobile/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/client-mobile/src/test.ts",
+            "tsConfig": "apps/client-mobile/tsconfig.spec.json",
+            "karmaConfig": "apps/client-mobile/karma.conf.js",
+            "polyfills": "apps/client-mobile/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "client-mobile-e2e": {
+      "root": "apps/client-mobile-e2e",
+      "sourceRoot": "apps/client-mobile-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-mobile-e2e/cypress.json",
+            "tsConfig": "apps/client-mobile-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-mobile:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client-mobile:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/client-mobile-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/client-mobile-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
+    }
+  },
+  "defaultProject": "client-web"
+}
