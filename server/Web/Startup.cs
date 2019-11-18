@@ -12,9 +12,14 @@
 
     using NLog.Extensions.Logging;
 
-    using Configuration;
+    using Infrastructure.Web.Extensions.Authentication;
+    using Infrastructure.Web.Extensions.Cors;
+    using Infrastructure.Web.Extensions.IdentityServer;
+    using Infrastructure.Web.Extensions.Mvc;
+    using Infrastructure.Web.Extensions.Swagger;
 
-    using Core.Implementation.Ping.RequestHandlers;
+    using Core.Implementation;
+
     using Data.Migrations;
 
     public class Startup
@@ -28,21 +33,22 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var requestHandler = new PingRequestHandler();
-
             services.ConfigureDataAccess(Configuration);
 
-            services.AddApplicationServices();
+            services.ConfigureBusinessLayer();
 
             services.AddSwaggerServices();
 
             services.ConfigureUsers();
 
+            services.ConfigureIdentityServer(Configuration);
+
             services.ConfigureAuthentication(Configuration);
 
             services.AddCors();
 
-            services.AddLogging(builder => {
+            services.AddLogging(builder =>
+            {
                 builder.AddConfiguration(Configuration)
                     .AddConsole()
                     .AddNLog();

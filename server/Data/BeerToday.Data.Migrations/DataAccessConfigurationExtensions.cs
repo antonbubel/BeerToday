@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-
-namespace BeerToday.Data.Migrations
+﻿namespace BeerToday.Data.Migrations
 {
-    using Data.Model;
     using System.Reflection;
 
-    public static class DataAccessConfigurationExtension
+    using Microsoft.EntityFrameworkCore;
+
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using Data.Model;
+
+    public static class DataAccessConfigurationExtensions
     {
         public static void ConfigureDataAccess(this IServiceCollection services, IConfiguration configuration)
         {

@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <Compile Remove="Ping\Notifications\**" />
+    <Compile Remove="Users\Requests\**" />
+    <EmbeddedResource Remove="Ping\Notifications\**" />
+    <EmbeddedResource Remove="Users\Requests\**" />
+    <None Remove="Ping\Notifications\**" />
+    <None Remove="Users\Requests\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ping\Notifications\" />
-    <Folder Include="Users\Requests\" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

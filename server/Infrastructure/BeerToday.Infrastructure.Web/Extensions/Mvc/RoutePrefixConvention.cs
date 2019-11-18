@@ -1,27 +1,11 @@
-﻿
-
-namespace BeerToday.Web.API.Configuration
+﻿namespace BeerToday.Infrastructure.Web.Extensions.Mvc
 {
     using System.Linq;
-    
-    using Microsoft.AspNetCore.Mvc;
+
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
     using Microsoft.AspNetCore.Mvc.Routing;
 
-    public static class RouterPrefixMvcOptionsExtensions
-    {
-        public static void UseGeneralRoutePrefix(this MvcOptions opts, IRouteTemplateProvider routeAttribute)
-        {
-            opts.Conventions.Add(new RoutePrefixConvention(routeAttribute));
-        }
-
-        public static void UseGeneralRoutePrefix(this MvcOptions opts, string prefix)
-        {
-            opts.UseGeneralRoutePrefix(new RouteAttribute(prefix));
-        }
-    }
-
-    public class RoutePrefixConvention : IApplicationModelConvention
+    internal class RoutePrefixConvention : IApplicationModelConvention
     {
         private readonly AttributeRouteModel _routePrefix;
 
@@ -32,7 +16,7 @@ namespace BeerToday.Web.API.Configuration
 
         public void Apply(ApplicationModel application)
         {
-            foreach (var selector in application.Controllers.SelectMany(c => c.Selectors))
+            foreach (var selector in application.Controllers.SelectMany(controller => controller.Selectors))
             {
                 if (selector.AttributeRouteModel != null)
                 {
@@ -46,4 +30,3 @@ namespace BeerToday.Web.API.Configuration
         }
     }
 }
-

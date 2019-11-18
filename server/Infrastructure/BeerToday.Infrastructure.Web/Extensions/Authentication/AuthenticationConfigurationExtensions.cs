@@ -1,13 +1,13 @@
-﻿namespace BeerToday.Web.API.Configuration
+﻿namespace BeerToday.Infrastructure.Web.Extensions.Authentication
 {
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Configuration;
 
-    using Infrastructure.Web.Constants;
-    using Infrastructure.Web.ConfigurationSections;
+    using Constants;
+    using ConfigurationSections;
 
-    public static class AuthenticationConfigurationExtension
+    public static class AuthenticationConfigurationExtensions
     {
         public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
@@ -36,4 +36,3 @@
         }
     }
 }
-

@@ -29,8 +29,7 @@
             }
             catch (Exception exception)
             {
-                logger.Error(
-                    exception, "Execution stopped because of exception");
+                logger.Error(exception, "Execution stopped because of exception");
 
                 throw;
             }

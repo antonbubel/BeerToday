@@ -1,12 +1,13 @@
-﻿namespace BeerToday.Web.API.Configuration
+﻿namespace BeerToday.Infrastructure.Web.Extensions.IdentityServer
 {
     using Microsoft.AspNetCore.Identity;
+
     using Microsoft.Extensions.DependencyInjection;
 
     using Data.Model;
     using Data.Model.Entities;
 
-    public static class UserConfigurationExtensions
+    public static class IdentityUserConfigurationExtensions
     {
         public static void ConfigureUsers(this IServiceCollection services)
         {
@@ -21,9 +22,6 @@
             })
             .AddEntityFrameworkStores<DatabaseContext>()
             .AddDefaultTokenProviders();
-
-            services.ConfigureIdentityServer();
         }
     }
 }
-

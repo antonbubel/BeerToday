@@ -1,4 +1,4 @@
-﻿namespace BeerToday.Web.API.Configuration
+﻿namespace BeerToday.Infrastructure.Web.Extensions.Cors
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
@@ -6,7 +6,7 @@
     using Infrastructure.Web.Constants;
     using Infrastructure.Web.ConfigurationSections;
 
-    public static class CorsConfigurationExtension
+    public static class CorsConfigurationExtensions
     {
         public static void ConfigureCors(this IApplicationBuilder app, IConfiguration configuration)
         {
@@ -20,4 +20,3 @@
         }
     }
 }
-
