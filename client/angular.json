@@ -10,7 +10,7 @@
       },
       "root": "apps/client-web",
       "sourceRoot": "apps/client-web/src",
-      "prefix": "beer-today",
+      "prefix": "beer-today-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -137,7 +137,7 @@
       },
       "root": "apps/client-mobile",
       "sourceRoot": "apps/client-mobile/src",
-      "prefix": "app",
+      "prefix": "beer-today-mobile",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -150,7 +150,12 @@
             "aot": false,
             "assets": [
               "apps/client-mobile/src/favicon.ico",
-              "apps/client-mobile/src/assets"
+              "apps/client-mobile/src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": ["apps/client-mobile/src/styles.scss"],
             "scripts": []
