@@ -16,6 +16,8 @@
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<DatabaseContext>(optionsBuilder => ConfigurePostgreSqlDatabase(optionsBuilder, configuration))
                 .BuildServiceProvider();
+
+            services.AddScoped<IDatabaseContext, DatabaseContext>();
         }
 
         private static void ConfigurePostgreSqlDatabase(DbContextOptionsBuilder optionsBuilder, IConfiguration configuration)

@@ -8,7 +8,22 @@
         public static bool ImplementGenericInterface(this Type type, Type genericInterfaceType)
         {
             return type.GetInterfaces()
-                .Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericInterfaceType);
+                .Any(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericInterfaceType);
+        }
+
+        public static Type[] GetGenericInterfaceArguments(this Type type, Type genericInterfaceType)
+        {
+            if (!type.ImplementGenericInterface(genericInterfaceType))
+            {
+                throw new ArgumentException(
+                    $"Providen type {type.FullName} does not implement generic interface {genericInterfaceType.FullName}",
+                    type.Name
+                );
+            }
+
+            return type.GetInterfaces()
+                .First(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericInterfaceType)
+                .GetGenericArguments();
         }
     }
 }
