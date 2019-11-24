@@ -18,6 +18,8 @@
                 .BuildServiceProvider();
 
             services.AddScoped<IDatabaseContext, DatabaseContext>();
+
+            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
         }
 
         private static void ConfigurePostgreSqlDatabase(DbContextOptionsBuilder optionsBuilder, IConfiguration configuration)
@@ -33,4 +35,3 @@
         }
     }
 }
-

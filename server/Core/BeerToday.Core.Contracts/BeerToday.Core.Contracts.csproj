@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Ping\Notifications\**" />
     <Compile Remove="Users\Requests\**" />
-    <EmbeddedResource Remove="Ping\Notifications\**" />
     <EmbeddedResource Remove="Users\Requests\**" />
-    <None Remove="Ping\Notifications\**" />
     <None Remove="Users\Requests\**" />
   </ItemGroup>
 
@@ -18,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\BeerToday.Data.Model\BeerToday.Data.Model.csproj" />
     <ProjectReference Include="..\..\Infrastructure\BeerToday.Infrastructure.Exceptions\BeerToday.Infrastructure.Exceptions.csproj" />
   </ItemGroup>
 
