@@ -5,7 +5,7 @@
 
     using Entities;
 
-    public class ApplicationUserMap : IEntityTypeConfiguration<User>
+    public class UserMap : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

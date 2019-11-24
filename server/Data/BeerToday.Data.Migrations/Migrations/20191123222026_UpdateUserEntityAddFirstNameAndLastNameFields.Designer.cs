@@ -3,15 +3,17 @@ using System;
 using BeerToday.Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BeerToday.Data.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20191123222026_UpdateUserEntityAddFirstNameAndLastNameFields")]
+    partial class UpdateUserEntityAddFirstNameAndLastNameFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,29 +47,6 @@ namespace BeerToday.Data.Migrations.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            ConcurrencyStamp = "73bd8bac-1aab-460b-9790-92e8659db5c9",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            ConcurrencyStamp = "c041a0ff-355b-48fa-b42d-075ce6ce7f86",
-                            Name = "Business",
-                            NormalizedName = "BUSINESS"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            ConcurrencyStamp = "33431bec-6dbe-49dd-bbb1-62cdf88df574",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("BeerToday.Data.Model.Entities.User", b =>
@@ -160,23 +139,6 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "User"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Business"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Administrator"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -200,29 +162,6 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-                            ClaimValue = "User",
-                            RoleId = 1L
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-                            ClaimValue = "Business",
-                            RoleId = 2L
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
-                            ClaimValue = "Administrator",
-                            RoleId = 3L
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>

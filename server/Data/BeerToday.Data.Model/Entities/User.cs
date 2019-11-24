@@ -6,9 +6,9 @@
 
     public class User : IdentityUser<long>
     {
-        public string Nickname { get; set; }
+        public string FirstName { get; set; }
 
-        public string NormalizedNickname { get; set; }
+        public string LastName { get; set; }
 
         public UserTypeEnum UserTypeId { get; set; }
 

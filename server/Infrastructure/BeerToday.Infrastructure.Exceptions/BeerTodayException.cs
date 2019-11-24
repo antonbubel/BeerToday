@@ -2,20 +2,15 @@
 {
     using System;
 
+    using Models;
+
     public class BeerTodayException : Exception
     {
-        public BeerTodayException()
-        {
-        }
+        public Error[] Errors { get; set; }
 
-        public BeerTodayException(string message)
-            : base(message)
+        public BeerTodayException(params Error[] errors)
         {
-        }
-
-        public BeerTodayException(string message, Exception innerException)
-            : base(message, innerException)
-        {
+            Errors = errors;
         }
     }
 }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BeerToday.Web.API.Controllers.Users
+﻿namespace BeerToday.Web.API.Controllers.Users
 {
     using MediatR;
+
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
 
     using Base;
 
+    using Core.Contracts.Users.Exceptions;
     using Core.Contracts.Users.Notifications;
 
     [Route("users")]
@@ -24,10 +22,18 @@ namespace BeerToday.Web.API.Controllers.Users
         }
 
         [HttpPost("sign-up")]
-        public async Task<IActionResult> SignUp([FromForm]SignUpNotification signUpNotification)
+        public async Task<IActionResult> SignUp([FromBody]UserSignUpNotification notification)
         {
+            try
+            {
+                await mediator.Publish(notification);
+            }
+            catch (UserSignUpException exception)
+            {
+                return BadRequest(exception.Errors);
+            }
+
             return Ok();
         }
     }
 }
-

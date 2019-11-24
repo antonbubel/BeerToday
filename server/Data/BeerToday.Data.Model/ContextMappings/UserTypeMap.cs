@@ -4,8 +4,9 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using Entities;
+    using UserTypeEnum = Enums.UserType;
 
-    public class ApplicationUserTypeMap : IEntityTypeConfiguration<UserType>
+    public class UserTypeMap : IEntityTypeConfiguration<UserType>
     {
         public void Configure(EntityTypeBuilder<UserType> builder)
         {
@@ -15,6 +16,12 @@
             builder.Property(userType => userType.Name)
                 .HasMaxLength(50)
                 .IsRequired();
+
+            builder.HasData(
+                new UserType { Id = UserTypeEnum.User, Name = UserTypeEnum.User.ToString() },
+                new UserType { Id = UserTypeEnum.Business, Name = UserTypeEnum.Business.ToString() },
+                new UserType { Id = UserTypeEnum.Administrator, Name = UserTypeEnum.Administrator.ToString() }
+            );
         }
     }
 }
