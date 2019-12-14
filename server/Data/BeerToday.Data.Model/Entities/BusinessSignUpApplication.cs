@@ -30,5 +30,7 @@
         public BusinessSignUpApplicationStatusEnum StatusId { get; set; }
 
         public BusinessSignUpApplicationStatus Status { get; set; }
+
+        public BusinessSignUpInvitation BusinessSignUpInvitation { get; set; }
     }
 }

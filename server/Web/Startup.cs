@@ -54,8 +54,9 @@
                     .AddNLog();
             });
 
-            services.AddMvc(options => 
+            services.AddMvc(options =>
             {
+                options.UseMiddleware();
                 options.UseGeneralRoutePrefix("api/v{version:apiVersion}");
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

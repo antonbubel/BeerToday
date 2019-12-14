@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Core.Implementati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Infrastructure.Web", "Infrastructure\BeerToday.Infrastructure.Web\BeerToday.Infrastructure.Web.csproj", "{1700326B-051B-46A1-BFF2-FDA292479EB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerToday.Data.Model", "Data\BeerToday.Data.Model\BeerToday.Data.Model.csproj", "{39454EDA-FF99-4818-890F-F14459692E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Data.Model", "Data\BeerToday.Data.Model\BeerToday.Data.Model.csproj", "{39454EDA-FF99-4818-890F-F14459692E5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerToday.Data.Migrations", "Data\BeerToday.Data.Migrations\BeerToday.Data.Migrations.csproj", "{3518DA24-C541-4AF9-AB41-AC7DE02761C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Data.Migrations", "Data\BeerToday.Data.Migrations\BeerToday.Data.Migrations.csproj", "{3518DA24-C541-4AF9-AB41-AC7DE02761C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Core.Constants", "Core\BeerToday.Core.Constants\BeerToday.Core.Constants.csproj", "{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerToday.Infrastructure.CQS", "Infrastructure\BeerToday.Infrastructure.CQS\BeerToday.Infrastructure.CQS.csproj", "{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{3518DA24-C541-4AF9-AB41-AC7DE02761C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3518DA24-C541-4AF9-AB41-AC7DE02761C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3518DA24-C541-4AF9-AB41-AC7DE02761C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,9 +92,10 @@ Global
 		{1700326B-051B-46A1-BFF2-FDA292479EB1} = {C58FABBA-633F-406F-821C-0D30CDE724B4}
 		{39454EDA-FF99-4818-890F-F14459692E5C} = {68119A1F-558B-4300-BC6D-FBA2B0C3FC4A}
 		{3518DA24-C541-4AF9-AB41-AC7DE02761C7} = {68119A1F-558B-4300-BC6D-FBA2B0C3FC4A}
+		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0} = {DD8F5DCB-2CBC-4B49-87CC-8B482A8E1037}
+		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F} = {C58FABBA-633F-406F-821C-0D30CDE724B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {007D9D9F-AD81-4ECB-904E-37B3CA92DA92}
 	EndGlobalSection
 EndGlobal
-

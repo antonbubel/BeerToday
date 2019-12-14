@@ -40,25 +40,25 @@
         {
             var user = mapper.Map<User>(notification);
 
-            logger.LogInformation($"About to create a new {nameof(User)}.", user);
+            logger.LogDebug($"About to create a new {nameof(User)}.");
 
             var createUserResult = await userManager.CreateAsync(user, notification.Password);
             
             ValidateIdentityResult(createUserResult);
             
-            logger.LogInformation($"Creation of {nameof(User)} is succeeded.", createUserResult);
+            logger.LogDebug($"Creation of {nameof(User)} is succeeded.");
 
             var addToRoleResult = await userManager.AddToRoleAsync(user, user.UserTypeId.ToString());
             
             ValidateIdentityResult(addToRoleResult);
             
-            logger.LogInformation($"{nameof(User)} is successfully added to a role {user.UserTypeId.ToString()}.", addToRoleResult);
+            logger.LogDebug($"{nameof(User)} is successfully added to a role {user.UserTypeId.ToString()}.");
 
             var addClaimsResult = await AddClaimsToUser(user);
             
             ValidateIdentityResult(addClaimsResult);
             
-            logger.LogInformation($"Claims were successfully added to the {nameof(User)}.", addClaimsResult);
+            logger.LogDebug($"Claims were successfully added to the {nameof(User)}.");
         }
 
         private async Task<IdentityResult> AddClaimsToUser(User user)
@@ -73,7 +73,7 @@
         {
             if (!result.Succeeded)
             {
-                logger.LogError($"User creation failed.", result);
+                logger.LogError($"User creation failed.");
 
                 var errors = mapper.Map<Error[]>(result.Errors);
                 throw new UserSignUpException(errors);
