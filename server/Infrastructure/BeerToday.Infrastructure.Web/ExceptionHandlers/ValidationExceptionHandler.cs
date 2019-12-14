@@ -3,23 +3,24 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
 
+    using System.Linq;
+
     using FluentValidation;
 
     using ActionResults;
 
-    public class ValidationExceptionHandler : IValidationExceptionHandler
+    using Exceptions.Models;
+
+    public class ValidationExceptionHandler : IExceptionHandler
     {
         public IActionResult Handle(ActionExecutedContext context)
         {
             var validationException = (ValidationException)context.Exception;
-            var modelState = context.ModelState;
+            var errors = validationException.Errors
+                .Select(error => new Error(error.ErrorCode, error.ErrorMessage))
+                .ToArray();
 
-            foreach (var error in validationException.Errors)
-            {
-                modelState.AddModelError(error.ErrorCode ?? string.Empty, error.ErrorMessage);
-            }
-
-            return new ValidationFailureResult(context.Result);
+            return new ValidationFailureResult(errors);
         }
     }
 }
