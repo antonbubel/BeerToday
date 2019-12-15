@@ -8,6 +8,7 @@
 
     using Microsoft.Extensions.Logging;
 
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Security.Claims;
@@ -40,40 +41,39 @@
         {
             var user = mapper.Map<User>(notification);
 
-            logger.LogDebug($"About to create a new {nameof(User)}.");
-
             var createUserResult = await userManager.CreateAsync(user, notification.Password);
             
-            ValidateIdentityResult(createUserResult);
-            
-            logger.LogDebug($"Creation of {nameof(User)} is succeeded.");
+            ValidateIdentityResult(createUserResult, user);
 
             var addToRoleResult = await userManager.AddToRoleAsync(user, user.UserTypeId.ToString());
             
-            ValidateIdentityResult(addToRoleResult);
-            
-            logger.LogDebug($"{nameof(User)} is successfully added to a role {user.UserTypeId.ToString()}.");
+            ValidateIdentityResult(addToRoleResult, user);
 
             var addClaimsResult = await AddClaimsToUser(user);
             
-            ValidateIdentityResult(addClaimsResult);
-            
-            logger.LogDebug($"Claims were successfully added to the {nameof(User)}.");
+            ValidateIdentityResult(addClaimsResult, user);
+
+            logger.LogInformation($"Successfully created a user with username: {user.UserName}");
         }
 
         private async Task<IdentityResult> AddClaimsToUser(User user)
         {
             return await userManager.AddClaimsAsync(user, new List<Claim>()
             {
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.Role, user.UserTypeId.ToString())
             });
         }
 
-        private void ValidateIdentityResult(IdentityResult result)
+        private void ValidateIdentityResult(IdentityResult result, User user)
         {
             if (!result.Succeeded)
             {
-                logger.LogError($"User creation failed.");
+                logger.LogError($@"User with username {user.UserName} creation failed with identity errors:
+                    {string.Join(", ", result.Errors.Select(error => error.Description))}");
 
                 var errors = mapper.Map<Error[]>(result.Errors);
                 throw new UserSignUpException(errors);

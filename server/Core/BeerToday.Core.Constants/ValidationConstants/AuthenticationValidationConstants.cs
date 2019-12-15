@@ -2,6 +2,6 @@
 {
     public static class AuthenticationValidationConstants
     {
-        public const int PasswordMinimumLength = 6;
+        public const int PasswordMinLength = 6;
     }
 }

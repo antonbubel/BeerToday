@@ -2,17 +2,16 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
 
-    using Infrastructure.Exceptions.Models;
+    using Infrastructure.Exceptions;
 
-    public class ValidationFailureResult : ObjectResult
+    public class PersistenceFailureResult : ObjectResult
     {
-        public ValidationFailureResult(IEnumerable<Error> errors) : base(errors)
+        public PersistenceFailureResult(BeerTodayException exception) : base(null)
         {
-            StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+            StatusCode = (int)HttpStatusCode.InternalServerError;
         }
 
         public override async Task ExecuteResultAsync(ActionContext context)

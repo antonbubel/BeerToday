@@ -35,19 +35,17 @@
         public async Task Handle(CreateBusinessSignUpApplicationNotification notification, CancellationToken cancellationToken)
         {
             var application = mapper.Map<BusinessSignUpApplication>(notification);
-
-            logger.LogInformation($"About to create a {nameof(BusinessSignUpApplication)}.", application);
-
             var result = await repository.CreateAsync(application);
 
             if (result.Status != OperationStatus.Successful)
             {
-                logger.LogError($"Creation of {nameof(BusinessSignUpApplication)} failed with not successfull operation result.", result);
+                logger.LogError($"Creation of a business sign up application failed with not successfull operation result, {result.Exception}");
 
                 throw new CreateBusinessSignUpApplicationException(result);
             }
 
-            logger.LogInformation($"Creation of {nameof(BusinessSignUpApplication)} succeeded.", result);
+            logger.LogInformation($@"Successfully created a business sign up application for {notification.FirstName} {notification.LastName},
+                Organization name: {notification.OrganizationName}");
         }
     }
 }

@@ -1,14 +1,13 @@
 ﻿namespace BeerToday.Core.Contracts.Businesses.Notifications
 {
-    using System.ComponentModel.DataAnnotations;
+    using MediatR;
 
-    public class BusinessSignUpNotification
+    public class BusinessSignUpNotification : INotification
     {
-        [Required]
+        public string Token { get; set; }
+
         public string Password { get; set; }
 
-        [Required]
-        [Compare(nameof(Password))]
         public string PasswordConfirmation { get; set; }
     }
 }

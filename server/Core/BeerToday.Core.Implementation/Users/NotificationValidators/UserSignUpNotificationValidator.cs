@@ -23,7 +23,7 @@
 
             RuleFor(notification => notification.Password)
                 .NotEmpty()
-                .MinimumLength(AuthenticationValidationConstants.PasswordMinimumLength);
+                .MinimumLength(AuthenticationValidationConstants.PasswordMinLength);
 
             RuleFor(notification => notification.PasswordConfirmation)
                 .Equal(notification => notification.Password);
