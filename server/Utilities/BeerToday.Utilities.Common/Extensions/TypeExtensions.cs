@@ -11,7 +11,7 @@
                 .Any(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericInterfaceType);
         }
 
-        public static Type[] GetGenericInterfaceArguments(this Type type, Type genericInterfaceType)
+        public static Type GetGenericInterfaceDefinition(this Type type, Type genericInterfaceType)
         {
             if (!type.ImplementGenericInterface(genericInterfaceType))
             {
@@ -22,7 +22,13 @@
             }
 
             return type.GetInterfaces()
-                .First(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericInterfaceType)
+                .First(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericInterfaceType);        }
+
+        public static Type[] GetGenericInterfaceArguments(this Type type, Type genericInterfaceType)
+        {
+            var genericInterface = type.GetGenericInterfaceDefinition(genericInterfaceType);
+
+            return genericInterface
                 .GetGenericArguments();
         }
     }

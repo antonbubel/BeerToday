@@ -19,6 +19,129 @@ namespace BeerToday.Data.Migrations.Migrations
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.BusinessSignUpApplication", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OrganizationAddress")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OrganizationName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("BusinessSignUpApplications");
+                });
+
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.BusinessSignUpApplicationStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BusinessSignUpApplicationStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 0,
+                            Name = "Undefined"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "Active"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Withdrawn"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Approved"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Rejected"
+                        });
+                });
+
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.BusinessSignUpInvitation", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BusinessSignUpInvitation");
+                });
+
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Belarus"
+                        });
+                });
+
             modelBuilder.Entity("BeerToday.Data.Model.Entities.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -45,6 +168,29 @@ namespace BeerToday.Data.Migrations.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ConcurrencyStamp = "af5e5f3f-efd1-4fe4-bd45-0349160829a9",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ConcurrencyStamp = "502c2a05-2560-4aec-9ea9-af0bfa70fe0a",
+                            Name = "Business",
+                            NormalizedName = "BUSINESS"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ConcurrencyStamp = "11b3179f-0d35-43aa-9e29-ac86cbf14397",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("BeerToday.Data.Model.Entities.User", b =>
@@ -68,21 +214,21 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Nickname")
-                        .HasColumnType("text");
-
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedNickname")
-                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedUserName")
                         .HasColumnType("character varying(256)")
@@ -137,6 +283,23 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Business"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Administrator"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -160,6 +323,29 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+                            ClaimValue = "User",
+                            RoleId = 1L
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+                            ClaimValue = "Business",
+                            RoleId = 2L
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+                            ClaimValue = "Administrator",
+                            RoleId = 3L
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<long>", b =>
@@ -238,6 +424,30 @@ namespace BeerToday.Data.Migrations.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.BusinessSignUpApplication", b =>
+                {
+                    b.HasOne("BeerToday.Data.Model.Entities.Country", "Country")
+                        .WithMany("BusinessSignUpApplications")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BeerToday.Data.Model.Entities.BusinessSignUpApplicationStatus", "Status")
+                        .WithMany("BusinessSignUpApplications")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BeerToday.Data.Model.Entities.BusinessSignUpInvitation", b =>
+                {
+                    b.HasOne("BeerToday.Data.Model.Entities.BusinessSignUpApplication", "BusinessSignUpApplication")
+                        .WithOne("BusinessSignUpInvitation")
+                        .HasForeignKey("BeerToday.Data.Model.Entities.BusinessSignUpInvitation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeerToday.Data.Model.Entities.User", b =>

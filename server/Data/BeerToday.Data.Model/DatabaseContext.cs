@@ -20,17 +20,21 @@
     {
         public DbSet<UserType> UserTypes { get; set; }
 
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<BusinessSignUpApplication> BusinessSignUpApplications { get; set; }
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
         }
 
-        public DbSet<T> DbSet<T>() where T : class
+        public DbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {
-            return Set<T>();
+            return Set<TEntity>();
         }
 
-        public new EntityEntry<T> Entry<T>(T entity) where T : class
+        public new EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
             return base.Entry(entity);
         }
@@ -40,11 +44,12 @@
             try
             {
                 SaveChanges();
+
                 return new CommitResult(true);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                return new CommitResult(ex);
+                return new CommitResult(exception);
             }
         }
 
