@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\BeerToday.Core.Implementation\BeerToday.Core.Implementation.csproj" />
+    <ProjectReference Include="..\..\Data\BeerToday.Data.EF\BeerToday.Data.EF.csproj" />
     <ProjectReference Include="..\..\Data\BeerToday.Data.Model\BeerToday.Data.Model.csproj" />
   </ItemGroup>
 

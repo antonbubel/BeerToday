@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Web.API", "Web\BeerToday.Web.API.csproj", "{D4B5FD43-A6EA-477E-8624-023CA2426407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Web.API", "Web\BeerToday.Web.API\BeerToday.Web.API.csproj", "{D4B5FD43-A6EA-477E-8624-023CA2426407}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CE5A2C51-78E4-486E-A2B8-EFA86CE9D31A}"
 EndProject
@@ -27,11 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Infrastructure.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Data.Model", "Data\BeerToday.Data.Model\BeerToday.Data.Model.csproj", "{39454EDA-FF99-4818-890F-F14459692E5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Data.Migrations", "Data\BeerToday.Data.Migrations\BeerToday.Data.Migrations.csproj", "{3518DA24-C541-4AF9-AB41-AC7DE02761C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Data.EF.Migrations", "Data\BeerToday.Data.EF.Migrations\BeerToday.Data.EF.Migrations.csproj", "{3518DA24-C541-4AF9-AB41-AC7DE02761C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Core.Constants", "Core\BeerToday.Core.Constants\BeerToday.Core.Constants.csproj", "{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerToday.Infrastructure.CQS", "Infrastructure\BeerToday.Infrastructure.CQS\BeerToday.Infrastructure.CQS.csproj", "{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerToday.Infrastructure.CQS", "Infrastructure\BeerToday.Infrastructure.CQS\BeerToday.Infrastructure.CQS.csproj", "{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerToday.Data.EF", "Data\BeerToday.Data.EF\BeerToday.Data.EF.csproj", "{3C80F5AF-B8D4-4ED0-8006-02690476EC17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C80F5AF-B8D4-4ED0-8006-02690476EC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C80F5AF-B8D4-4ED0-8006-02690476EC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C80F5AF-B8D4-4ED0-8006-02690476EC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C80F5AF-B8D4-4ED0-8006-02690476EC17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{3518DA24-C541-4AF9-AB41-AC7DE02761C7} = {68119A1F-558B-4300-BC6D-FBA2B0C3FC4A}
 		{1D04C8B1-B25D-4336-8220-29FF5AB1B1F0} = {DD8F5DCB-2CBC-4B49-87CC-8B482A8E1037}
 		{5D861E0E-E383-49DC-BE75-E84D2C6EFF0F} = {C58FABBA-633F-406F-821C-0D30CDE724B4}
+		{3C80F5AF-B8D4-4ED0-8006-02690476EC17} = {68119A1F-558B-4300-BC6D-FBA2B0C3FC4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {007D9D9F-AD81-4ECB-904E-37B3CA92DA92}

@@ -12,19 +12,19 @@
     using Contracts.Businesses.Exceptions;
     using Contracts.Businesses.Notifications;
 
-    using Data.Model;
     using Data.Model.Results;
     using Data.Model.Entities;
+    using Data.Model.Repositories;
 
     public class CreateBusinessSignUpApplicationNotificationHandler : INotificationHandler<CreateBusinessSignUpApplicationNotification>
     {
         private readonly IMapper mapper;
-        private readonly IRepository<long, BusinessSignUpApplication> repository;
+        private readonly IBusinessSignUpApplicationRepository repository;
         private readonly ILogger<CreateBusinessSignUpApplicationNotificationHandler> logger;
 
         public CreateBusinessSignUpApplicationNotificationHandler(
             IMapper mapper,
-            IRepository<long, BusinessSignUpApplication> repository,
+            IBusinessSignUpApplicationRepository repository,
             ILogger<CreateBusinessSignUpApplicationNotificationHandler> logger)
         {
             this.mapper = mapper;

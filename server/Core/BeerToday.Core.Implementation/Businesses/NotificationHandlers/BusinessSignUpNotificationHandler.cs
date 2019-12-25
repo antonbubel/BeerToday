@@ -14,13 +14,11 @@
 
     using Microsoft.AspNetCore.Identity;
 
-    using Microsoft.EntityFrameworkCore;
-
     using Contracts.Businesses.Exceptions;
     using Contracts.Businesses.Notifications;
 
-    using Data.Model;
     using Data.Model.Entities;
+    using Data.Model.Repositories;
 
     using Infrastructure.Exceptions.Models;
 
@@ -28,28 +26,24 @@
     {
         private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
-        private readonly IRepository<long, BusinessSignUpApplication> applicationsRepository;
-        private readonly IRepository<long, BusinessSignUpInvitation> invitationsRepository;
+        private readonly IBusinessSignUpInvitationRepository repository;
         private readonly ILogger<BusinessSignUpNotificationHandler> logger;
 
         public BusinessSignUpNotificationHandler(
             IMapper mapper,
             UserManager<User> userManager,
-            IRepository<long, BusinessSignUpApplication> applicationsRepository,
-            IRepository<long, BusinessSignUpInvitation> invitationsRepository,
+            IBusinessSignUpInvitationRepository repository,
             ILogger<BusinessSignUpNotificationHandler> logger)
         {
             this.mapper = mapper;
             this.userManager = userManager;
-            this.applicationsRepository = applicationsRepository;
-            this.invitationsRepository = invitationsRepository;
+            this.repository = repository;
             this.logger = logger;
         }
 
         public async Task Handle(BusinessSignUpNotification notification, CancellationToken cancellationToken)
         {
-            var invitation = await invitationsRepository.GetQueryable()
-                .FirstOrDefaultAsync(invitation => invitation.Token == notification.Token);
+            var invitation = await repository.GetSignUpInvitationByToken(notification.Token);
 
             if (invitation == null)
             {

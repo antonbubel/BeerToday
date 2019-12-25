@@ -4,7 +4,7 @@
 
     using Microsoft.Extensions.DependencyInjection;
 
-    using Data.Model;
+    using Data.EF;
     using Data.Model.Entities;
 
     public static class IdentityUserConfigurationExtensions
