@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class AuditableEntity<TKey> : BaseEntity<TKey>
+    public abstract class AuditableEntity<TKey> : BaseEntity<TKey>
     {
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; }
